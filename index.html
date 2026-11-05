@@ -13,6 +13,8 @@
       --primary-dark: #115e59;
       --accent: #ea580c;
       --accent-light: #ffedd5;
+      --yt: #e11d48;
+      --yt-light: #ffe4e6;
       --text: #0f172a;
       --text-muted: #475569;
       --border: #e2e8f0;
@@ -50,7 +52,6 @@
       text-decoration: underline;
     }
 
-    /* Hero Header */
     .hero {
       background: linear-gradient(135deg, #0f766e 0%, #0369a1 60%, #1e3a8a 100%);
       color: #ffffff;
@@ -89,7 +90,7 @@
     .hero p {
       font-size: 1rem;
       opacity: 0.92;
-      max-width: 720px;
+      max-width: 780px;
     }
 
     .hero-actions {
@@ -142,7 +143,6 @@
       z-index: 3;
     }
 
-    /* Top Summary Cards (No Estimated Costs) */
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -173,7 +173,7 @@
     }
 
     .summary-value {
-      font-size: 1.22rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--text);
     }
@@ -183,7 +183,6 @@
       color: var(--text-muted);
     }
 
-    /* Badges */
     .badge {
       display: inline-flex;
       align-items: center;
@@ -215,7 +214,11 @@
       color: var(--accent);
     }
 
-    /* Navigation Tabs */
+    .badge-yt {
+      background: var(--yt-light);
+      color: var(--yt);
+    }
+
     .nav-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -250,7 +253,6 @@
       color: #ffffff;
     }
 
-    /* Section Cards */
     .section-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -279,7 +281,6 @@
       gap: 8px;
     }
 
-    /* Flight & Car Grid */
     .transport-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -316,7 +317,6 @@
       gap: 8px;
     }
 
-    /* Day Filter Pills */
     .day-filter {
       display: flex;
       flex-wrap: wrap;
@@ -341,7 +341,6 @@
       border-color: var(--primary-dark);
     }
 
-    /* Day Card */
     .day-card {
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -416,7 +415,6 @@
       color: var(--text-muted);
     }
 
-    /* Stay Grid */
     .stay-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -448,7 +446,6 @@
       gap: 5px;
     }
 
-    /* Checklist */
     .checklist-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -514,17 +511,18 @@
     <div class="hero-inner">
       <div class="hero-badge">🍊 JEJU FAMILY TRIP · 2026.11.11 ~ 11.15</div>
       <h1>제주도 가을 가족 여행 플래너 (4박 5일)</h1>
-      <p>11/11(수) 와이프·딸 선발대 출발 &amp; 11/12(목) 21:05 본인 제주공항 합류 · 가을 억새·단풍·핑크뮬리 핵심 코스</p>
+      <p>11/11(수) 와이프·딸 선발대 출발 &amp; 11/12(목) 21:05 본인 제주공항 합류 · 유튜브 쇼츠 2편 추천 명소 통합본</p>
       <div class="hero-actions">
-        <a class="btn btn-white" href="https://sites.google.com/view/jeju202611" target="_blank" rel="noopener">🌐 구글 사이트 게시 페이지 열기</a>
-        <a class="btn btn-glass" href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">🚗 신한카드 제주엔젤카</a>
+        <a class="btn btn-white" href="https://sites.google.com/view/jeju202611" target="_blank" rel="noopener">🌐 구글 사이트 게시 페이지</a>
+        <a class="btn btn-glass" href="https://www.youtube.com/shorts/uW3sl6Ex2zE" target="_blank" rel="noopener">🎬 유튜브 추천 쇼츠 1</a>
+        <a class="btn btn-glass" href="https://www.youtube.com/shorts/YgjBM9koHhs" target="_blank" rel="noopener">🎬 유튜브 추천 쇼츠 2</a>
         <button class="btn btn-glass" onclick="copyEmbedCode()">📋 구글 사이트 임베드 코드 복사</button>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <!-- 상단 핵심 요약 카드 (부정확한 예상 금액 제외 완료) -->
+    <!-- 상단 핵심 요약 카드 -->
     <section class="summary-grid">
       <div class="summary-card">
         <div class="summary-label">
@@ -559,7 +557,8 @@
       <button class="tab-btn active" onclick="switchTab('all', this)">전체 보기</button>
       <button class="tab-btn" onclick="switchTab('transport', this)">✈️ 항공 &amp; 렌터카</button>
       <button class="tab-btn" onclick="switchTab('itinerary', this)">🗓️ 일자별 상세 일정 (Day 1~5)</button>
-      <button class="tab-btn" onclick="switchTab('stay', this)">🏨 숙소 &amp; 맛집 가이드</button>
+      <button class="tab-btn" onclick="switchTab('youtube', this)">🎬 유튜브 추천 방문지</button>
+      <button class="tab-btn" onclick="switchTab('stay', this)">🏨 숙소 가이드</button>
       <button class="tab-btn" onclick="switchTab('checklist', this)">✅ 출발 체크리스트</button>
     </nav>
 
@@ -597,11 +596,11 @@
       </div>
     </section>
 
-    <!-- 2. 일자별 상세 일정 (예상 금액 표기 전면 제거) -->
+    <!-- 2. 일자별 상세 일정 (유튜브 추천지 통합) -->
     <section id="sec-itinerary" class="section-card">
       <div class="section-header">
-        <div class="section-title">🗓️ 일자별 상세 일정 (Day 1 ~ Day 5)</div>
-        <span class="badge badge-theme">총 주행 약 220km · 전 구간 통행료 무료</span>
+        <div class="section-title">🗓️ 일자별 상세 일정 (Day 1 ~ Day 5 · 유튜브 추천지 반영)</div>
+        <span class="badge badge-theme">총 주행 약 220km</span>
       </div>
 
       <div class="day-filter">
@@ -616,7 +615,7 @@
       <!-- Day 1 -->
       <div class="day-card" data-day="day1">
         <div class="day-card-header">
-          <div class="day-card-title">Day 1 · 11/11(수) — 가족 도착 · 18:00 렌터카 인수 · 숙소 체크인 및 저녁</div>
+          <div class="day-card-title">Day 1 · 11/11(수) — 가족 도착 · 18:00 렌터카 인수 · 이호스테이 체크인 및 저녁</div>
           <div class="day-card-meta">
             <span class="badge badge-plan">와이프·딸 2명</span>
             <span class="badge badge-theme">공항권 · 주행 약 20분</span>
@@ -642,18 +641,18 @@
           <div class="timeline-item">
             <div class="time-slot">18:40 ~ 19:10</div>
             <div>
-              <div class="spot-title">공항 인근 숙소 체크인 (<a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> / <a href="https://ihostay.com/" target="_blank" rel="noopener">이호스테이</a>)</div>
-              <div class="spot-desc">공항 및 렌터카 본사에서 차로 10분 거리 · 짐 정리 후 저녁 이동</div>
+              <div class="spot-title">1·2일차 연박 숙소 체크인 (<a href="https://ihostay.com/" target="_blank" rel="noopener">이호스테이</a>)</div>
+              <div class="spot-desc">공항 및 렌터카 본사에서 차로 10분 거리 · 이호테우 해변 인접</div>
             </div>
-            <span class="badge badge-done">1~2일차 연박</span>
+            <span class="badge badge-done">예약완료 (2박)</span>
           </div>
           <div class="timeline-item">
             <div class="time-slot">19:20 ~ 21:00</div>
             <div>
-              <div class="spot-title">첫날 저녁 식사 (<a href="https://web.paybooc.ai/mer/web/profile/SIzctWL81pTpm8AhL9tXg" target="_blank" rel="noopener">숙성도 제주본점</a> · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500733" target="_blank" rel="noopener">서문공설시장</a> · <a href="https://web.paybooc.ai/mer/web/profile/O8EZjreQgRdG74sCPSLgQ" target="_blank" rel="noopener">쉐프의스시이야기</a>)</div>
-              <div class="spot-desc">사전 예약 없이 현장 방문 · 연동 흑돼지/초밥 또는 서문공설시장 정육식당</div>
+              <div class="spot-title">첫날 저녁 식사 (<a href="https://web.paybooc.ai/mer/web/profile/SIzctWL81pTpm8AhL9tXg" target="_blank" rel="noopener">숙성도 제주본점</a> · 바다가 보이는 흑돼지집 · <a href="https://web.paybooc.ai/mer/web/profile/O8EZjreQgRdG74sCPSLgQ" target="_blank" rel="noopener">쉐프의스시이야기</a>)</div>
+              <div class="spot-desc">사전 예약 없이 현장 방문 · 연동 흑돼지/초밥 또는 해안도로 오션뷰 흑돼지</div>
             </div>
-            <span class="badge badge-plan">현장방문</span>
+            <span class="badge badge-yt">🎬 쇼츠 1 추천</span>
           </div>
         </div>
       </div>
@@ -661,41 +660,49 @@
       <!-- Day 2 -->
       <div class="day-card" data-day="day2">
         <div class="day-card-header">
-          <div class="day-card-title">Day 2 · 11/12(목) — 공항 40분 내 가을 명소 산책 · 애월 한담 · 21:05 공항 합류</div>
+          <div class="day-card-title">Day 2 · 11/12(목) — 새별오름(억새)·새빌(핑크뮬리)·감귤체험·한담해안 · 21:05 합류</div>
           <div class="day-card-meta">
             <span class="badge badge-plan">낮 2명 → 밤 3명 합류</span>
-            <span class="badge badge-theme">서부 해안 · 주행 1시간 25분</span>
+            <span class="badge badge-yt">🎬 유튜브 공통 베스트</span>
           </div>
         </div>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="time-slot">10:35 ~ 11:50</div>
+            <div class="time-slot">09:30 ~ 10:30</div>
             <div>
-              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500694" target="_blank" rel="noopener">항파두리 항몽유적지</a> (화살나무 단풍숲 &amp; 나홀로나무)</div>
-              <div class="spot-desc">숙소에서 차로 25분 · 붉게 물드는 화살나무 단풍 터널과 가을 꽃밭 평지 산책 (대안: <a href="https://www.visitjeju.net/u/5fY" target="_blank" rel="noopener">한림공원</a>)</div>
+              <div class="spot-title">모닝커피·브런치 (<strong>홉히 hoPhi</strong> 공항 근처 오션뷰 커피 또는 <strong>수리코</strong> 야외 브런치)</div>
+              <div class="spot-desc">숙소 인근 해안도로 오션뷰 카페(홉히) 또는 제주시 정원 브런치 맛집(수리코)</div>
             </div>
-            <span class="badge badge-theme">가을단풍</span>
+            <span class="badge badge-yt">🎬 쇼츠 2 추천</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">12:15 ~ 16:00</div>
+            <div class="time-slot">10:45 ~ 13:30</div>
             <div>
-              <div class="spot-title">애월 점심 식사 &amp; <a href="https://www.visitjeju.net/u/E8N" target="_blank" rel="noopener">애월 한담해안산책로</a> · 오션뷰 카페거리</div>
-              <div class="spot-desc"><a href="https://web.paybooc.ai/mer/web/profile/mpeXvFYSUVvljyw48mTw" target="_blank" rel="noopener">제주당 베이커리카페</a> 또는 고등어쌈밥 점심 후 에메랄드빛 해안 산책 및 <a href="https://web.paybooc.ai/mer/web/profile/QzfAHMxAaDUfVhrZ7lPYw" target="_blank" rel="noopener">제주봄날</a> 티타임</div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500343" target="_blank" rel="noopener">새별오름</a> (은빛 억새) · <strong>새빌</strong> (핑크뮬리) · <a href="https://web.paybooc.ai/mer/web/profile/mpeXvFYSUVvljyw48mTw" target="_blank" rel="noopener">제주당 베이커리카페</a></div>
+              <div class="spot-desc">두 유튜브 영상 공통 1위 억새 명소 새별오름 산책 후 바로 앞 새빌 핑크뮬리 언덕 및 제주당 대형 베이커리 브런치 (경유: <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500694" target="_blank" rel="noopener">항파두리 항몽유적지</a>)</div>
             </div>
-            <span class="badge badge-plan">해안산책</span>
+            <span class="badge badge-yt">🎬 쇼츠 1·2 공통</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">16:30 ~ 17:40</div>
+            <div class="time-slot">13:50 ~ 16:00</div>
             <div>
-              <div class="spot-title">도두봉 키세스존 &amp; 도두동 무지개해안도로 (우천 시 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000010958" target="_blank" rel="noopener">아르떼뮤지엄 제주</a>)</div>
-              <div class="spot-desc">공항 옆 10분 완만한 등반으로 가을 바다 일몰 조망 후 숙소 복귀 및 휴식</div>
+              <div class="spot-title"><strong>카페 우미 / 금능이네</strong> (감귤밭 포토존·감귤따기) &amp; <a href="https://www.visitjeju.net/u/E8N" target="_blank" rel="noopener">애월 한담해안산책로</a></div>
+              <div class="spot-desc">11월 제철 감귤밭 스냅·수확 체험 후 에메랄드빛 애월 해안 산책 및 <a href="https://web.paybooc.ai/mer/web/profile/QzfAHMxAaDUfVhrZ7lPYw" target="_blank" rel="noopener">제주봄날</a> (대안: <a href="https://www.visitjeju.net/u/5fY" target="_blank" rel="noopener">한림공원</a>)</div>
             </div>
-            <span class="badge badge-theme">일몰명소</span>
+            <span class="badge badge-yt">🎬 쇼츠 1 추천</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">16:30 ~ 17:45</div>
+            <div>
+              <div class="spot-title">도두봉 키세스존 · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500469" target="_blank" rel="noopener">용두암</a> 비행기 포토존 (또는 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020148" target="_blank" rel="noopener">수월봉</a> 지질트레일 일몰)</div>
+              <div class="spot-desc">바다 위 비행기 착륙 포토존(용두암) 또는 서쪽 차귀도 해안절벽 노을(수월봉) · 우천 시 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000010958" target="_blank" rel="noopener">아르떼뮤지엄 제주</a></div>
+            </div>
+            <span class="badge badge-yt">🎬 쇼츠 1 추천</span>
           </div>
           <div class="timeline-item">
             <div class="time-slot">21:05 ~ 22:00</div>
             <div>
-              <div class="spot-title">제주국제공항 단기주차장 픽업 (서울 19:50 출발편 도착) &amp; 연박 숙소 복귀</div>
+              <div class="spot-title">제주국제공항 단기주차장 픽업 (서울 19:50 출발편 도착) &amp; <a href="https://ihostay.com/" target="_blank" rel="noopener">이호스테이</a> 복귀</div>
               <div class="spot-desc">성인 3명 완전체 합류! <a href="https://web.paybooc.ai/mer/web/profile/RDwpS5ZP5G26haxCXWZaiw" target="_blank" rel="noopener">일품순두부</a>(24시간) 또는 동문시장 야식 포장</div>
             </div>
             <span class="badge badge-done">3인 완전체 합류</span>
@@ -706,41 +713,41 @@
       <!-- Day 3 -->
       <div class="day-card" data-day="day3">
         <div class="day-card-header">
-          <div class="day-card-title">Day 3 · 11/13(금) — 제주 가을 억새 절정(산굼부리) · 사려니숲길 · 섭지코지 → 서귀포</div>
+          <div class="day-card-title">Day 3 · 11/13(금) — 제주돌문화공원(하늘연못) · 산굼부리(억새) · 보롬왓/동화마을 · 쇠소깍 → 서귀포</div>
           <div class="day-card-meta">
             <span class="badge badge-done">성인 3명 전원</span>
-            <span class="badge badge-theme">동부 억새 · 주행 2시간 15분</span>
+            <span class="badge badge-yt">🎬 쇼츠 2 핵심 코스</span>
           </div>
         </div>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="time-slot">10:10 ~ 11:50</div>
+            <div class="time-slot">10:00 ~ 12:30</div>
             <div>
-              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500283" target="_blank" rel="noopener">산굼부리</a> 은빛 억새 대평원 산책</div>
-              <div class="spot-desc">천연기념물 제263호 분화구 일대 은빛 억새 군락 · 계단 부담 없는 평탄한 산책로</div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500547" target="_blank" rel="noopener">제주돌문화공원</a> (하늘연못 포토존) &amp; <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500283" target="_blank" rel="noopener">산굼부리</a> 은빛 억새 대평원</div>
+              <div class="spot-desc">차로 5분 거리에 인접한 SNS 명소 '하늘연못' 물 위 반영 포토존과 산굼부리 억새 평원 연속 관람</div>
             </div>
-            <span class="badge badge-theme">억새 1순위</span>
+            <span class="badge badge-yt">🎬 쇼츠 2 추천</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">12:05 ~ 14:50</div>
+            <div class="time-slot">12:35 ~ 15:10</div>
             <div>
-              <div class="spot-title">조천 교래리 점심(보말·닭칼국수) &amp; <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500281" target="_blank" rel="noopener">사려니숲길</a> 삼나무 숲 산책</div>
-              <div class="spot-desc">교래손칼국수·성미가든 점심 식사 후 사려니숲길 무장애 데크길 피톤치드 산책</div>
+              <div class="spot-title">교래리 점심(보말·닭칼국수) → <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500281" target="_blank" rel="noopener">사려니숲길</a> · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020050" target="_blank" rel="noopener">보롬왓</a> (또는 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_300000000012837" target="_blank" rel="noopener">제주동화마을</a>)</div>
+              <div class="spot-desc">이국적인 뷰의 넓은 가을 꽃밭(보롬왓) 또는 동화 감성 정원(제주동화마을) · 북카페 <strong>또또공간</strong></div>
             </div>
-            <span class="badge badge-plan">숲길힐링</span>
+            <span class="badge badge-yt">🎬 쇼츠 2 추천</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">15:35 ~ 16:50</div>
+            <div class="time-slot">15:50 ~ 17:10</div>
             <div>
-              <div class="spot-title"><a href="https://www.visitjeju.net/u/6yx" target="_blank" rel="noopener">섭지코지</a> 해안 절벽 억새길 (또는 표선 따라비오름 억새 군락)</div>
-              <div class="spot-desc">성산일출봉과 푸른 바다를 배경으로 펼쳐지는 해안 억새 산책로</div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500384" target="_blank" rel="noopener">쇠소깍</a> (전통 테우·나룻배 체험) 또는 <a href="https://www.visitjeju.net/u/6yx" target="_blank" rel="noopener">섭지코지</a> 해안 억새길</div>
+              <div class="spot-desc">배 타기 좋은 선선한 11월 에메랄드빛 계곡 체험(쇠소깍) 또는 성산 해안 절벽 억새 산책</div>
             </div>
-            <span class="badge badge-theme">해안억새</span>
+            <span class="badge badge-yt">🎬 쇼츠 2 추천</span>
           </div>
           <div class="timeline-item">
             <div class="time-slot">18:00 ~ 20:30</div>
             <div>
-              <div class="spot-title">서귀포 숙소 체크인 &amp; <a href="https://visitjeju.net/kr/detail/view?contentsid=CONT_000000000500731" target="_blank" rel="noopener">서귀포매일올레시장</a> 저녁</div>
+              <div class="spot-title">3일차 숙소 체크인 (<a href="http://www.sunandmoonjeju.com/" target="_blank" rel="noopener">썬 앤 문 리조트</a> 등) &amp; <a href="https://visitjeju.net/kr/detail/view?contentsid=CONT_000000000500731" target="_blank" rel="noopener">서귀포매일올레시장</a> 저녁</div>
               <div class="spot-desc"><a href="https://web.paybooc.ai/mer/web/profile/Ha1XuVWoHg5AKXhPBSr1A" target="_blank" rel="noopener">용이식당</a>(흑돼지두루치기) 및 올레시장 먹거리 투어</div>
             </div>
             <span class="badge badge-plan">서귀포 1박</span>
@@ -751,7 +758,7 @@
       <!-- Day 4 -->
       <div class="day-card" data-day="day4">
         <div class="day-card-header">
-          <div class="day-card-title">Day 4 · 11/14(토) — 핑크뮬리·단풍 드라이브 · 18:00 렌터카 반납 &amp; 공항 인근 숙박</div>
+          <div class="day-card-title">Day 4 · 11/14(토) — 원앤온리(산방산+팜파스) · 마노르블랑 · 오설록 녹차밭 · 곶자왈 → 18:00 반납</div>
           <div class="day-card-meta">
             <span class="badge badge-done">성인 3명 전원</span>
             <span class="badge badge-warn">18:00 렌터카 정시 반납</span>
@@ -761,34 +768,34 @@
           <div class="timeline-item">
             <div class="time-slot">09:40 ~ 10:40</div>
             <div>
-              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_300000000014275" target="_blank" rel="noopener">천지연폭포</a> 아침 계곡 숲길 산책</div>
-              <div class="spot-desc">서귀포 숙소 체크아웃 직후 평탄한 아열대 숲길과 폭포 감상</div>
+              <div class="spot-title"><strong>국세공무원교육원</strong> (거대 팜파스그라스 산책길) 또는 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_300000000014275" target="_blank" rel="noopener">천지연폭포</a></div>
+              <div class="spot-desc">가을 하늘 아래 은빛 팜파스그라스 포토존(국세공무원교육원) 및 귤밭뷰 야외 커피 맛집 <strong>중문별장</strong></div>
             </div>
-            <span class="badge badge-plan">아침산책</span>
+            <span class="badge badge-yt">🎬 쇼츠 1·2 추천</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">11:20 ~ 14:20</div>
+            <div class="time-slot">11:00 ~ 13:50</div>
             <div>
-              <div class="spot-title"><a href="https://m.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000022562" target="_blank" rel="noopener">마노르블랑</a> 핑크뮬리 축제 (또는 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000001195" target="_blank" rel="noopener">카멜리아힐</a>) &amp; 안덕 점심</div>
-              <div class="spot-desc">산방산 조망 핑크뮬리·팜파스 정원 산책 후 <a href="https://web.paybooc.ai/mer/web/profile/0nGdKvPmbgSc2WZCDDzvqA" target="_blank" rel="noopener">서귀포시축협 축산물플라자</a> 또는 순천미향 점심</div>
+              <div class="spot-title"><strong>원앤온리 (One and Only)</strong> 산방산+팜파스 뷰 브런치 &amp; <a href="https://m.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000022562" target="_blank" rel="noopener">마노르블랑</a> 핑크뮬리</div>
+              <div class="spot-desc">산방산 암벽+팜파스 포토존(원앤온리) 및 마노르블랑 핑크뮬리 정원 (대안: <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000001195" target="_blank" rel="noopener">카멜리아 힐</a>) · 안덕 <a href="https://web.paybooc.ai/mer/web/profile/0nGdKvPmbgSc2WZCDDzvqA" target="_blank" rel="noopener">축산물플라자</a> 점심</div>
             </div>
-            <span class="badge badge-theme">핑크뮬리</span>
+            <span class="badge badge-yt">🎬 쇼츠 2 추천</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">14:50 ~ 15:40</div>
+            <div class="time-slot">14:00 ~ 15:20</div>
             <div>
-              <div class="spot-title">한라산 1100도로 단풍 드라이브 &amp; <a href="https://www.visitjeju.net/u/5hn" target="_blank" rel="noopener">1100고지습지</a> 데크길</div>
-              <div class="spot-desc">해발 1,100m 고원 단풍길 드라이브 및 20분 나무 데크 산책</div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500457&menuId=DOM_000001703010008000" target="_blank" rel="noopener">오설록 티 뮤지엄</a> (초록 녹차밭) &amp; <a href="https://m.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000021111" target="_blank" rel="noopener">제주곶자왈도립공원</a> · <strong>토끼나무 / 미쁜제과</strong></div>
+              <div class="spot-desc">사계절 초록 녹차밭 산책(오설록), 천천히 걷기 좋은 원시림(곶자왈도립공원), 넓은 정원 한옥 베이커리(미쁜제과)</div>
             </div>
-            <span class="badge badge-theme">단풍드라이브</span>
+            <span class="badge badge-yt">🎬 쇼츠 1·2 공통</span>
           </div>
           <div class="timeline-item">
-            <div class="time-slot">17:20 ~ 18:30</div>
+            <div class="time-slot">15:30 ~ 18:30</div>
             <div>
-              <div class="spot-title">휘발유 주유 완료 → 18:00 <a href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">제주엔젤카</a> 반납 → <a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> 체크인</div>
-              <div class="spot-desc">정시 반납 후 공항 인근 숙소 체크인 및 제주 마지막 밤 저녁 만찬</div>
+              <div class="spot-title">한라산 1100도로 단풍 드라이브 (<a href="https://www.visitjeju.net/u/5hn" target="_blank" rel="noopener">1100고지습지</a>) → 18:00 <a href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">제주엔젤카</a> 반납 → <a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> 체크인</div>
+              <div class="spot-desc">휘발유 주유 후 18:00 정시 반납 · 예약 완료된 서문레지던스호텔 체크인 후 제주 마지막 밤 만찬</div>
             </div>
-            <span class="badge badge-done">18:00 반납</span>
+            <span class="badge badge-done">18:00 반납 · 숙소확정</span>
           </div>
         </div>
       </div>
@@ -806,8 +813,8 @@
           <div class="timeline-item">
             <div class="time-slot">03:50 ~ 04:20</div>
             <div>
-              <div class="spot-title">기상 및 공항 인근 숙소 얼리 체크아웃</div>
-              <div class="spot-desc">전날 밤 짐 패킹 100% 완료 · 택시로 제주국제공항 국내선 출발층(2층) 이동 (약 10분)</div>
+              <div class="spot-title">기상 및 <a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> 얼리 체크아웃</div>
+              <div class="spot-desc">전날 밤 짐 패킹 100% 완료 · 제주국제공항 국내선 출발층(2층)으로 즉시 이동 (약 10분)</div>
             </div>
             <span class="badge badge-warn">새벽출발</span>
           </div>
@@ -823,7 +830,58 @@
       </div>
     </section>
 
-    <!-- 3. 숙소 구성 안내 (비용 표기 제거 완료 · 4박 중 3박 확정) -->
+    <!-- 3. 유튜브 쇼츠 2편 추천 방문지 총정리 섹션 -->
+    <section id="sec-youtube" class="section-card">
+      <div class="section-header">
+        <div class="section-title">🎬 유튜브 쇼츠 2편 참고 — 11월 제주 방문 추천지 모음</div>
+        <div class="day-card-meta">
+          <a class="badge badge-yt" href="https://www.youtube.com/shorts/uW3sl6Ex2zE" target="_blank" rel="noopener">▶ 쇼츠 1 (써니핫플 BEST 8)</a>
+          <a class="badge badge-yt" href="https://www.youtube.com/shorts/YgjBM9koHhs" target="_blank" rel="noopener">▶ 쇼츠 2 (가욤 Kayom 11월 모음)</a>
+        </div>
+      </div>
+      <div class="stay-grid">
+        <div class="stay-card">
+          <div>
+            <span class="badge badge-yt">서부 · 애월 · 한림 (Day 2 코스)</span>
+            <h4><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500343" target="_blank" rel="noopener">새별오름</a> · 새빌 · <a href="https://web.paybooc.ai/mer/web/profile/mpeXvFYSUVvljyw48mTw" target="_blank" rel="noopener">제주당</a></h4>
+            <div class="stay-meta">
+              <span>• <strong>새별오름 (공통 1위):</strong> 11월 은빛 억새가 가득한 서부 대표 오름</span>
+              <span>• <strong>새빌 &amp; 제주당:</strong> 새별오름 바로 앞 핑크뮬리 언덕 포토존 &amp; 대형 베이커리 카페</span>
+              <span>• <strong>카페 우미 / 금능이네:</strong> 11월 감귤밭 포토존 &amp; 감귤따기 체험</span>
+              <span>• <strong><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020148" target="_blank" rel="noopener">수월봉</a>:</strong> 차귀도 해안절벽 지질트레일 &amp; 노을 명소</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stay-card">
+          <div>
+            <span class="badge badge-yt">동부 · 조천 · 구좌 · 표선 (Day 3 코스)</span>
+            <h4><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500547" target="_blank" rel="noopener">제주돌문화공원</a> · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020050" target="_blank" rel="noopener">보롬왓</a> · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_300000000012837" target="_blank" rel="noopener">동화마을</a></h4>
+            <div class="stay-meta">
+              <span>• <strong>제주돌문화공원:</strong> 산굼부리 5분 거리, SNS 명소 '하늘연못' 물 위 포토존</span>
+              <span>• <strong>보롬왓 &amp; 제주동화마을:</strong> 이국적인 뷰의 넓은 꽃밭 &amp; 가을 동화 감성 정원</span>
+              <span>• <strong><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500384" target="_blank" rel="noopener">쇠소깍</a>:</strong> 선선한 11월에 전통 조각배(테우·카약) 타기 좋은 에메랄드 계곡</span>
+              <span>• <strong>또또공간 / 봄빛코티지:</strong> 조용한 가을 북카페&amp;케이크 / 크리스마스 감성 숙소</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stay-card">
+          <div>
+            <span class="badge badge-yt">남서부 · 안덕 · 서귀포 · 공항권 (Day 1·4 코스)</span>
+            <h4>원앤온리 · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500457&menuId=DOM_000001703010008000" target="_blank" rel="noopener">오설록</a> · <a href="https://m.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000021111" target="_blank" rel="noopener">곶자왈</a> · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500469" target="_blank" rel="noopener">용두암</a></h4>
+            <div class="stay-meta">
+              <span>• <strong>원앤온리 &amp; 국세공무원교육원:</strong> 산방산+팜파스 뷰 브런치 카페 &amp; 거대 팜파스 산책길</span>
+              <span>• <strong>오설록 티 뮤지엄 &amp; 제주곶자왈도립공원:</strong> 초록 녹차밭 &amp; 원시림 산책로(토끼나무)</span>
+              <span>• <strong>중문별장 &amp; 미쁜제과:</strong> 귤밭뷰 야외 커피 맛집 &amp; 넓은 정원 노을 베이커리</span>
+              <span>• <strong>용두암 · 홉히(hoPhi) · 수리코:</strong> 공항 근처 비행기 포토존, 오션뷰 커피, 야외 브런치</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 숙소 구성 안내 (4박 중 3박 확정 · 비용 표기 제거 완료) -->
     <section id="sec-stay" class="section-card">
       <div class="section-header">
         <div class="section-title">🏨 일자별 숙소 구성 및 공식 안내 링크</div>
@@ -847,9 +905,9 @@
             <span class="badge badge-plan">3일차 (11/13 ~ 11/14 · 서귀포 1박 · 추천 후보)</span>
             <h4><a href="http://www.sunandmoonjeju.com/" target="_blank" rel="noopener">썬 앤 문 리조트</a> 외 추천 후보</h4>
             <div class="stay-meta">
-              <span>• 추천 1: <a href="http://www.sunandmoonjeju.com/" target="_blank" rel="noopener">썬 앤 문 리조트</a> (<a href="https://www.agoda.com/ko-kr/sun-and-moon-resort/hotel/jeju-island-kr.html" target="_blank" rel="noopener">아고다 예약 페이지</a>) — 사계 해안·산방산 인접</span>
+              <span>• 추천 1: <a href="http://www.sunandmoonjeju.com/" target="_blank" rel="noopener">썬 앤 문 리조트</a> (<a href="https://www.agoda.com/ko-kr/sun-and-moon-resort/hotel/jeju-island-kr.html" target="_blank" rel="noopener">아고다 예약 페이지</a>) — 사계 해안·산방산·원앤온리 인접</span>
               <span>• 추천 2: <a href="https://accommodation.myrealtrip.com/union/products/1231409?checkIn=2026-11-13&checkOut=2026-11-14&adultCount=3" target="_blank" rel="noopener">바다위 올레 펜션</a> — 서귀포 바다 산책로 인접</span>
-              <span>• 추천 3: <a href="https://accommodation.myrealtrip.com/union/products/4712086?checkIn=2026-11-13&checkOut=2026-11-14&adultCount=3" target="_blank" rel="noopener">호텔 가온 제이스테이</a> — 서귀포매일올레시장 도보권</span>
+              <span>• 추천 3: <a href="https://accommodation.myrealtrip.com/union/products/4712086?checkIn=2026-11-13&checkOut=2026-11-14&adultCount=3" target="_blank" rel="noopener">호텔 가온 제이스테이</a> / 봄빛코티지(감성숙소)</span>
             </div>
           </div>
         </div>
@@ -868,7 +926,7 @@
       </div>
     </section>
 
-    <!-- 4. 출발 전 필수 체크리스트 -->
+    <!-- 5. 출발 전 필수 체크리스트 -->
     <section id="sec-checklist" class="section-card">
       <div class="section-header">
         <div class="section-title">✅ 출발 전 필수 점검 체크리스트</div>
@@ -877,10 +935,10 @@
       <div class="checklist-grid" id="checklist-container">
         <label class="check-item"><input type="checkbox" checked onchange="toggleCheck(this)" /> <span>항공권 3인 발권 완료 (11/11 가족 선발대 · 11/12 본인 합류 · 11/15 동반 귀경)</span></label>
         <label class="check-item"><input type="checkbox" checked onchange="toggleCheck(this)" /> <span>신한카드 제주엔젤카 예약 완료 (쏘나타 디엣지 서라운드뷰 · 11/11 18:00 ~ 11/14 18:00)</span></label>
+        <label class="check-item"><input type="checkbox" checked onchange="toggleCheck(this)" /> <span>1·2일차 이호스테이(2박) &amp; 4일차 제주 서문레지던스호텔(1박) 예약 완료</span></label>
         <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>운전자 전원 운전면허증 실물 &amp; 신분증 실물 지참 확인</span></label>
         <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/11 렌터카 인수 시 본인(남편) 제2운전자 현장 등록 방법 확인</span></label>
-        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/12 21:05 제주공항 단기주차장 픽업 위치 가족 공유</span></label>
-        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/14 밤 짐 100% 패킹 및 11/15 04:20 새벽 체크아웃·택시 호출 준비</span></label>
+        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/14 밤 짐 100% 패킹 및 11/15 04:20 새벽 체크아웃·이동 준비</span></label>
       </div>
     </section>
   </main>
@@ -894,6 +952,7 @@
       const sections = {
         transport: document.getElementById('sec-transport'),
         itinerary: document.getElementById('sec-itinerary'),
+        youtube: document.getElementById('sec-youtube'),
         stay: document.getElementById('sec-stay'),
         checklist: document.getElementById('sec-checklist')
       };
@@ -928,7 +987,6 @@
       });
     }
 
-    // 초기 체크 상태 반영
     document.querySelectorAll('.check-item input').forEach(toggleCheck);
   </script>
 </body>
