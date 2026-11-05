@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>제주도 가족 여행 플래너 (2026.11.11 ~ 11.15)</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --primary: #0f766e;
+      --primary-light: #ccfbf1;
+      --primary-dark: #115e59;
+      --accent: #ea580c;
+      --accent-light: #ffedd5;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --info: #1d4ed8;
+      --info-bg: #dbeafe;
+      --warn: #b45309;
+      --warn-bg: #fef3c7;
+      --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Header */
+    .hero {
+      background: linear-gradient(135deg, #0f766e 0%, #0369a1 60%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 40px 24px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.92;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s ease;
+      text-decoration: none;
+    }
+
+    .btn-white {
+      background: #ffffff;
+      color: var(--primary-dark);
+    }
+
+    .btn-white:hover {
+      background: #f1f5f9;
+      text-decoration: none;
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.26);
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: -22px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Top Summary Cards (No Estimated Costs) */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .summary-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-value {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .summary-sub {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge-done {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .badge-plan {
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .badge-warn {
+      background: var(--warn-bg);
+      color: var(--warn);
+    }
+
+    .badge-theme {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: var(--card);
+      padding: 10px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      padding: 9px 16px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn:hover {
+      background: #f1f5f9;
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Section Cards */
+    .section-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Flight & Car Grid */
+    .transport-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .info-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .info-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* Day Filter Pills */
+    .day-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .day-pill {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .day-pill.active {
+      background: var(--primary-dark);
+      color: #ffffff;
+      border-color: var(--primary-dark);
+    }
+
+    /* Day Card */
+    .day-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #ffffff;
+    }
+
+    .day-card-header {
+      background: linear-gradient(90deg, #f0fdfa 0%, #f8fafc 100%);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .day-card-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .day-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .timeline {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 110px 1fr auto;
+      gap: 14px;
+      align-items: start;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .time-slot {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--primary-dark);
+      background: #f0fdfa;
+      padding: 4px 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .spot-title {
+      font-weight: 700;
+      font-size: 0.96rem;
+      margin-bottom: 3px;
+    }
+
+    .spot-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* Stay Grid */
+    .stay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px;
+    }
+
+    .stay-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .stay-card h4 {
+      font-size: 1.02rem;
+      font-weight: 800;
+      margin-top: 6px;
+    }
+
+    .stay-meta {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Checklist */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .check-item.checked {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .check-item input {
+      margin-top: 4px;
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 999;
+    }
+
+    @media (max-width: 640px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .time-slot {
+        display: inline-block;
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🍊 JEJU FAMILY TRIP · 2026.11.11 ~ 11.15</div>
+      <h1>제주도 가을 가족 여행 플래너 (4박 5일)</h1>
+      <p>11/11(수) 와이프·딸 선발대 출발 &amp; 11/12(목) 21:05 본인 제주공항 합류 · 가을 억새·단풍·핑크뮬리 핵심 코스</p>
+      <div class="hero-actions">
+        <a class="btn btn-white" href="https://sites.google.com/view/jeju202611" target="_blank" rel="noopener">🌐 구글 사이트 게시 페이지 열기</a>
+        <a class="btn btn-glass" href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">🚗 신한카드 제주엔젤카</a>
+        <button class="btn btn-glass" onclick="copyEmbedCode()">📋 구글 사이트 임베드 코드 복사</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 상단 핵심 요약 카드 (부정확한 예상 금액 제외 완료) -->
+    <section class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-label">
+          <span>📅 여행 일정 · 인원</span>
+          <span class="badge badge-plan">4박 5일 · 성인 3명</span>
+        </div>
+        <div class="summary-value">2026.11.11(수) ~ 11.15(일)</div>
+        <div class="summary-sub">Day 1~2 낮: 와이프·딸 (2명) / Day 2 밤(21:05)~Day 5: 3명 전원 합류</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-label">
+          <span>✈️ 항공 · 렌터카 현황</span>
+          <span class="badge badge-done">예약완료</span>
+        </div>
+        <div class="summary-value">항공 3인 &amp; 쏘나타 디엣지 확정</div>
+        <div class="summary-sub">제주엔젤카 (11/11 18:00 인수 ~ 11/14 18:00 반납 · 5구역 14번 셔틀)</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-label">
+          <span>🏨 숙소 구성 현황</span>
+          <span class="badge badge-done">거점 확정 · 추천 반영</span>
+        </div>
+        <div class="summary-value">제주시 2박 · 서귀포 1박 · 공항권 1박</div>
+        <div class="summary-sub">1·2일차 연박(이호스테이/서문레지던스) · 3일차 서귀포 · 4일차 서문레지던스</div>
+      </div>
+    </section>
+
+    <!-- 탭 네비게이션 -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('all', this)">전체 보기</button>
+      <button class="tab-btn" onclick="switchTab('transport', this)">✈️ 항공 &amp; 렌터카</button>
+      <button class="tab-btn" onclick="switchTab('itinerary', this)">🗓️ 일자별 상세 일정 (Day 1~5)</button>
+      <button class="tab-btn" onclick="switchTab('stay', this)">🏨 숙소 &amp; 맛집 가이드</button>
+      <button class="tab-btn" onclick="switchTab('checklist', this)">✅ 출발 체크리스트</button>
+    </nav>
+
+    <!-- 1. 항공 & 렌터카 섹션 -->
+    <section id="sec-transport" class="section-card">
+      <div class="section-header">
+        <div class="section-title">✈️ 항공편 및 렌터카 확정 안내</div>
+        <span class="badge badge-done">전원 항공 · 렌터카 예매 완료</span>
+      </div>
+      <div class="transport-grid">
+        <div class="info-box">
+          <h3>
+            <span>🛫 항공편 스케줄 (성인 3명)</span>
+            <span class="badge badge-done">발권완료</span>
+          </h3>
+          <ul class="info-list">
+            <li><strong>가족 2명 (와이프·딸) 가는편:</strong> 2026.11.11(수) 16:40 서울 출발 → 17:55 제주 도착</li>
+            <li><strong>본인 (나 1명) 가는편:</strong> 2026.11.12(목) 19:50 서울 출발 → 21:05 제주 도착 (단기주차장 픽업)</li>
+            <li><strong>가족 3명 전원 오는편:</strong> 2026.11.15(일) 06:35 제주 출발 → 07:50 서울 도착 (04:20 숙소 출발)</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h3>
+            <span>🚗 <a href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">신한카드 제주엔젤카</a></span>
+            <span class="badge badge-done">예약완료</span>
+          </h3>
+          <ul class="info-list">
+            <li><strong>차종:</strong> 쏘나타 디엣지 서라운드뷰 25년(고급형) 휘발유 (360도 어라운드뷰 탑재)</li>
+            <li><strong>대여 기간:</strong> 2026-11-11(수) 18:00 인수 ~ 2026-11-14(토) 18:00 정시 반납 (72시간)</li>
+            <li><strong>셔틀 탑승:</strong> 제주공항 1층 5번 출구 건너편 렌터카 주차장 <strong>5구역 14번</strong> (평시 20분 / 11~12시·17~18시·20시 이후 30분 간격)</li>
+            <li><strong>필수 사항:</strong> 운전면허증 실물 필수 지참 · 11/11 인수 시 남편 제2운전자 등록 확인</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 일자별 상세 일정 (예상 금액 표기 전면 제거) -->
+    <section id="sec-itinerary" class="section-card">
+      <div class="section-header">
+        <div class="section-title">🗓️ 일자별 상세 일정 (Day 1 ~ Day 5)</div>
+        <span class="badge badge-theme">총 주행 약 220km · 전 구간 통행료 무료</span>
+      </div>
+
+      <div class="day-filter">
+        <button class="day-pill active" onclick="filterDay('all', this)">전체 일정</button>
+        <button class="day-pill" onclick="filterDay('day1', this)">Day 1 (11/11 수)</button>
+        <button class="day-pill" onclick="filterDay('day2', this)">Day 2 (11/12 목)</button>
+        <button class="day-pill" onclick="filterDay('day3', this)">Day 3 (11/13 금)</button>
+        <button class="day-pill" onclick="filterDay('day4', this)">Day 4 (11/14 토)</button>
+        <button class="day-pill" onclick="filterDay('day5', this)">Day 5 (11/15 일)</button>
+      </div>
+
+      <!-- Day 1 -->
+      <div class="day-card" data-day="day1">
+        <div class="day-card-header">
+          <div class="day-card-title">Day 1 · 11/11(수) — 가족 도착 · 18:00 렌터카 인수 · 숙소 체크인 및 저녁</div>
+          <div class="day-card-meta">
+            <span class="badge badge-plan">와이프·딸 2명</span>
+            <span class="badge badge-theme">공항권 · 주행 약 20분</span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-slot">16:40 ~ 17:55</div>
+            <div>
+              <div class="spot-title">서울 출발 → 제주국제공항 도착 (와이프·딸 2명)</div>
+              <div class="spot-desc">수하물 수령 후 1층 5번 출구 길 건너 렌터카 하우스 5구역 14번 승차장으로 이동</div>
+            </div>
+            <span class="badge badge-done">항공 예매완료</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">18:00 ~ 18:40</div>
+            <div>
+              <div class="spot-title"><a href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">제주엔젤카</a> 셔틀 탑승 및 쏘나타 디엣지 서라운드뷰 인수</div>
+              <div class="spot-desc">야간 인수 시 휴대폰 플래시로 외관 촬영 · 유류 게이지(휘발유) 확인 · 제2운전자 등록 확인</div>
+            </div>
+            <span class="badge badge-done">렌터카 예약완료</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">18:40 ~ 19:10</div>
+            <div>
+              <div class="spot-title">공항 인근 숙소 체크인 (<a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> / <a href="https://ihostay.com/" target="_blank" rel="noopener">이호스테이</a>)</div>
+              <div class="spot-desc">공항 및 렌터카 본사에서 차로 10분 거리 · 짐 정리 후 저녁 이동</div>
+            </div>
+            <span class="badge badge-done">1~2일차 연박</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">19:20 ~ 21:00</div>
+            <div>
+              <div class="spot-title">첫날 저녁 식사 (<a href="https://web.paybooc.ai/mer/web/profile/SIzctWL81pTpm8AhL9tXg" target="_blank" rel="noopener">숙성도 제주본점</a> · <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500733" target="_blank" rel="noopener">서문공설시장</a> · <a href="https://web.paybooc.ai/mer/web/profile/O8EZjreQgRdG74sCPSLgQ" target="_blank" rel="noopener">쉐프의스시이야기</a>)</div>
+              <div class="spot-desc">사전 예약 없이 현장 방문 · 연동 흑돼지/초밥 또는 서문공설시장 정육식당</div>
+            </div>
+            <span class="badge badge-plan">현장방문</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card" data-day="day2">
+        <div class="day-card-header">
+          <div class="day-card-title">Day 2 · 11/12(목) — 공항 40분 내 가을 명소 산책 · 애월 한담 · 21:05 공항 합류</div>
+          <div class="day-card-meta">
+            <span class="badge badge-plan">낮 2명 → 밤 3명 합류</span>
+            <span class="badge badge-theme">서부 해안 · 주행 1시간 25분</span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-slot">10:35 ~ 11:50</div>
+            <div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500694" target="_blank" rel="noopener">항파두리 항몽유적지</a> (화살나무 단풍숲 &amp; 나홀로나무)</div>
+              <div class="spot-desc">숙소에서 차로 25분 · 붉게 물드는 화살나무 단풍 터널과 가을 꽃밭 평지 산책 (대안: <a href="https://www.visitjeju.net/u/5fY" target="_blank" rel="noopener">한림공원</a>)</div>
+            </div>
+            <span class="badge badge-theme">가을단풍</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">12:15 ~ 16:00</div>
+            <div>
+              <div class="spot-title">애월 점심 식사 &amp; <a href="https://www.visitjeju.net/u/E8N" target="_blank" rel="noopener">애월 한담해안산책로</a> · 오션뷰 카페거리</div>
+              <div class="spot-desc"><a href="https://web.paybooc.ai/mer/web/profile/mpeXvFYSUVvljyw48mTw" target="_blank" rel="noopener">제주당 베이커리카페</a> 또는 고등어쌈밥 점심 후 에메랄드빛 해안 산책 및 <a href="https://web.paybooc.ai/mer/web/profile/QzfAHMxAaDUfVhrZ7lPYw" target="_blank" rel="noopener">제주봄날</a> 티타임</div>
+            </div>
+            <span class="badge badge-plan">해안산책</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">16:30 ~ 17:40</div>
+            <div>
+              <div class="spot-title">도두봉 키세스존 &amp; 도두동 무지개해안도로 (우천 시 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000010958" target="_blank" rel="noopener">아르떼뮤지엄 제주</a>)</div>
+              <div class="spot-desc">공항 옆 10분 완만한 등반으로 가을 바다 일몰 조망 후 숙소 복귀 및 휴식</div>
+            </div>
+            <span class="badge badge-theme">일몰명소</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">21:05 ~ 22:00</div>
+            <div>
+              <div class="spot-title">제주국제공항 단기주차장 픽업 (서울 19:50 출발편 도착) &amp; 연박 숙소 복귀</div>
+              <div class="spot-desc">성인 3명 완전체 합류! <a href="https://web.paybooc.ai/mer/web/profile/RDwpS5ZP5G26haxCXWZaiw" target="_blank" rel="noopener">일품순두부</a>(24시간) 또는 동문시장 야식 포장</div>
+            </div>
+            <span class="badge badge-done">3인 완전체 합류</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card" data-day="day3">
+        <div class="day-card-header">
+          <div class="day-card-title">Day 3 · 11/13(금) — 제주 가을 억새 절정(산굼부리) · 사려니숲길 · 섭지코지 → 서귀포</div>
+          <div class="day-card-meta">
+            <span class="badge badge-done">성인 3명 전원</span>
+            <span class="badge badge-theme">동부 억새 · 주행 2시간 15분</span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-slot">10:10 ~ 11:50</div>
+            <div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500283" target="_blank" rel="noopener">산굼부리</a> 은빛 억새 대평원 산책</div>
+              <div class="spot-desc">천연기념물 제263호 분화구 일대 은빛 억새 군락 · 계단 부담 없는 평탄한 산책로</div>
+            </div>
+            <span class="badge badge-theme">억새 1순위</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">12:05 ~ 14:50</div>
+            <div>
+              <div class="spot-title">조천 교래리 점심(보말·닭칼국수) &amp; <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500281" target="_blank" rel="noopener">사려니숲길</a> 삼나무 숲 산책</div>
+              <div class="spot-desc">교래손칼국수·성미가든 점심 식사 후 사려니숲길 무장애 데크길 피톤치드 산책</div>
+            </div>
+            <span class="badge badge-plan">숲길힐링</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">15:35 ~ 16:50</div>
+            <div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/u/6yx" target="_blank" rel="noopener">섭지코지</a> 해안 절벽 억새길 (또는 표선 따라비오름 억새 군락)</div>
+              <div class="spot-desc">성산일출봉과 푸른 바다를 배경으로 펼쳐지는 해안 억새 산책로</div>
+            </div>
+            <span class="badge badge-theme">해안억새</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">18:00 ~ 20:30</div>
+            <div>
+              <div class="spot-title">서귀포 숙소 체크인 &amp; <a href="https://visitjeju.net/kr/detail/view?contentsid=CONT_000000000500731" target="_blank" rel="noopener">서귀포매일올레시장</a> 저녁</div>
+              <div class="spot-desc"><a href="https://web.paybooc.ai/mer/web/profile/Ha1XuVWoHg5AKXhPBSr1A" target="_blank" rel="noopener">용이식당</a>(흑돼지두루치기) 및 올레시장 먹거리 투어</div>
+            </div>
+            <span class="badge badge-plan">서귀포 1박</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-card" data-day="day4">
+        <div class="day-card-header">
+          <div class="day-card-title">Day 4 · 11/14(토) — 핑크뮬리·단풍 드라이브 · 18:00 렌터카 반납 &amp; 공항 인근 숙박</div>
+          <div class="day-card-meta">
+            <span class="badge badge-done">성인 3명 전원</span>
+            <span class="badge badge-warn">18:00 렌터카 정시 반납</span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-slot">09:40 ~ 10:40</div>
+            <div>
+              <div class="spot-title"><a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_300000000014275" target="_blank" rel="noopener">천지연폭포</a> 아침 계곡 숲길 산책</div>
+              <div class="spot-desc">서귀포 숙소 체크아웃 직후 평탄한 아열대 숲길과 폭포 감상</div>
+            </div>
+            <span class="badge badge-plan">아침산책</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">11:20 ~ 14:20</div>
+            <div>
+              <div class="spot-title"><a href="https://m.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000022562" target="_blank" rel="noopener">마노르블랑</a> 핑크뮬리 축제 (또는 <a href="https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000001195" target="_blank" rel="noopener">카멜리아힐</a>) &amp; 안덕 점심</div>
+              <div class="spot-desc">산방산 조망 핑크뮬리·팜파스 정원 산책 후 <a href="https://web.paybooc.ai/mer/web/profile/0nGdKvPmbgSc2WZCDDzvqA" target="_blank" rel="noopener">서귀포시축협 축산물플라자</a> 또는 순천미향 점심</div>
+            </div>
+            <span class="badge badge-theme">핑크뮬리</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">14:50 ~ 15:40</div>
+            <div>
+              <div class="spot-title">한라산 1100도로 단풍 드라이브 &amp; <a href="https://www.visitjeju.net/u/5hn" target="_blank" rel="noopener">1100고지습지</a> 데크길</div>
+              <div class="spot-desc">해발 1,100m 고원 단풍길 드라이브 및 20분 나무 데크 산책</div>
+            </div>
+            <span class="badge badge-theme">단풍드라이브</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">17:20 ~ 18:30</div>
+            <div>
+              <div class="spot-title">휘발유 주유 완료 → 18:00 <a href="https://shinhan.jejuangelcar.com/" target="_blank" rel="noopener">제주엔젤카</a> 반납 → <a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> 체크인</div>
+              <div class="spot-desc">정시 반납 후 공항 인근 숙소 체크인 및 제주 마지막 밤 저녁 만찬</div>
+            </div>
+            <span class="badge badge-done">18:00 반납</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card" data-day="day5">
+        <div class="day-card-header">
+          <div class="day-card-title">Day 5 · 11/15(일) — 새벽 체크아웃 후 공항 직행 · 06:35 서울행 귀경</div>
+          <div class="day-card-meta">
+            <span class="badge badge-done">성인 3명 전원</span>
+            <span class="badge badge-warn">04:20 숙소 출발</span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time-slot">03:50 ~ 04:20</div>
+            <div>
+              <div class="spot-title">기상 및 공항 인근 숙소 얼리 체크아웃</div>
+              <div class="spot-desc">전날 밤 짐 패킹 100% 완료 · 택시로 제주국제공항 국내선 출발층(2층) 이동 (약 10분)</div>
+            </div>
+            <span class="badge badge-warn">새벽출발</span>
+          </div>
+          <div class="timeline-item">
+            <div class="time-slot">04:45 ~ 06:35</div>
+            <div>
+              <div class="spot-title">제주국제공항 수하물 위탁 · 보안검색 통과 → 06:35 서울행 출발</div>
+              <div class="spot-desc">모바일 탑승권 사전 발급 및 신분증 실물 지참 → 07:50 서울 도착</div>
+            </div>
+            <span class="badge badge-done">귀경 완료</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 숙소 구성 안내 (비용 표기 제거 완료) -->
+    <section id="sec-stay" class="section-card">
+      <div class="section-header">
+        <div class="section-title">🏨 일자별 숙소 구성 및 공식 안내 링크</div>
+        <span class="badge badge-plan">짐 이동 최소화 (연박 + 서귀포 + 공항권)</span>
+      </div>
+      <div class="stay-grid">
+        <div class="stay-card">
+          <div>
+            <span class="badge badge-done">1~2일차 (11/11 ~ 11/13 · 2박 연박)</span>
+            <h4><a href="https://ihostay.com/" target="_blank" rel="noopener">이호스테이</a> / <a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a></h4>
+            <div class="stay-meta">
+              <span>• 위치: 제주공항 및 제주엔젤카 본사에서 차로 10분 내외</span>
+              <span>• 특징: 첫날 야간 체크인 및 2일차 밤 21:05 공항 픽업 후 짐 이동 없이 2박 연박</span>
+              <span>• 링크: <a href="https://ihostay.com/" target="_blank" rel="noopener">이호스테이 공식</a> · <a href="https://seomoonhotel.com/" target="_blank" rel="noopener">서문레지던스 공식</a> · <a href="https://www.yeogi.com/domestic-accommodations/70345" target="_blank" rel="noopener">여기어때</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stay-card">
+          <div>
+            <span class="badge badge-plan">3일차 (11/13 ~ 11/14 · 서귀포 1박)</span>
+            <h4>서귀포 권역 추천 숙소</h4>
+            <div class="stay-meta">
+              <span>• 후보 1: <a href="http://www.sunandmoonjeju.com/" target="_blank" rel="noopener">썬 앤 문 리조트</a> (<a href="https://www.agoda.com/ko-kr/sun-and-moon-resort/hotel/jeju-island-kr.html" target="_blank" rel="noopener">아고다 상세</a>) — 사계 해안·산방산 인접</span>
+              <span>• 후보 2: <a href="https://accommodation.myrealtrip.com/union/products/1231409?checkIn=2026-11-13&checkOut=2026-11-14&adultCount=3" target="_blank" rel="noopener">바다위 올레 펜션</a> — 서귀포 바다 산책로 인접</span>
+              <span>• 후보 3: <a href="https://accommodation.myrealtrip.com/union/products/4712086?checkIn=2026-11-13&checkOut=2026-11-14&adultCount=3" target="_blank" rel="noopener">호텔 가온 제이스테이</a> — 서귀포매일올레시장 도보권</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stay-card">
+          <div>
+            <span class="badge badge-done">4일차 (11/14 ~ 11/15 · 반납 후 1박)</span>
+            <h4><a href="https://seomoonhotel.com/" target="_blank" rel="noopener">제주 서문레지던스호텔</a> (공항 인근)</h4>
+            <div class="stay-meta">
+              <span>• 위치: 제주시 서문로4길 16-8 (제주공항 택시 9분 거리)</span>
+              <span>• 특징: 18:00 렌터카 반납 후 이동 편리, 방·거실 분리형 구조, 익일 04:20 새벽 체크아웃 최적화</span>
+              <span>• 대안: <a href="https://accommodation.myrealtrip.com/union/products/7025589?checkIn=2026-11-14&checkOut=2026-11-15&adultCount=3" target="_blank" rel="noopener">제주공항 하얀등대펜션</a> · <a href="https://accommodation.myrealtrip.com/union/products/3180332?checkIn=2026-11-14&checkOut=2026-11-15&adultCount=3" target="_blank" rel="noopener">어반스테이 제주공항</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 출발 전 필수 체크리스트 -->
+    <section id="sec-checklist" class="section-card">
+      <div class="section-header">
+        <div class="section-title">✅ 출발 전 필수 점검 체크리스트</div>
+        <span class="badge badge-plan">클릭하여 완료 체크 (자동 저장)</span>
+      </div>
+      <div class="checklist-grid" id="checklist-container">
+        <label class="check-item"><input type="checkbox" checked onchange="toggleCheck(this)" /> <span>항공권 3인 발권 완료 (11/11 가족 선발대 · 11/12 본인 합류 · 11/15 동반 귀경)</span></label>
+        <label class="check-item"><input type="checkbox" checked onchange="toggleCheck(this)" /> <span>신한카드 제주엔젤카 예약 완료 (쏘나타 디엣지 서라운드뷰 · 11/11 18:00 ~ 11/14 18:00)</span></label>
+        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>운전자 전원 운전면허증 실물 &amp; 신분증 실물 지참 확인</span></label>
+        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/11 렌터카 인수 시 본인(남편) 제2운전자 현장 등록 방법 확인</span></label>
+        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/12 21:05 제주공항 단기주차장 픽업 위치 가족 공유</span></label>
+        <label class="check-item"><input type="checkbox" onchange="toggleCheck(this)" /> <span>11/14 밤 짐 100% 패킹 및 11/15 04:20 새벽 체크아웃·택시 호출 준비</span></label>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">클립보드에 복사되었습니다!</div>
+
+  <script>
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const sections = {
+        transport: document.getElementById('sec-transport'),
+        itinerary: document.getElementById('sec-itinerary'),
+        stay: document.getElementById('sec-stay'),
+        checklist: document.getElementById('sec-checklist')
+      };
+      Object.entries(sections).forEach(([key, el]) => {
+        el.style.display = (tab === 'all' || tab === key) ? 'block' : 'none';
+      });
+    }
+
+    function filterDay(day, btn) {
+      document.querySelectorAll('.day-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.day-card').forEach(card => {
+        card.style.display = (day === 'all' || card.dataset.day === day) ? 'block' : 'none';
+      });
+    }
+
+    function toggleCheck(input) {
+      const label = input.closest('.check-item');
+      if (input.checked) {
+        label.classList.add('checked');
+      } else {
+        label.classList.remove('checked');
+      }
+    }
+
+    function copyEmbedCode() {
+      const htmlContent = document.documentElement.outerHTML;
+      navigator.clipboard.writeText(htmlContent).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2500);
+      });
+    }
+
+    // 초기 체크 상태 반영
+    document.querySelectorAll('.check-item input').forEach(toggleCheck);
+  </script>
+</body>
+</html>
