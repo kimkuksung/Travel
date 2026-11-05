@@ -4,7 +4,7 @@
 
 ## 🌐 웹 애플리케이션 & 게시 페이지
 - **단일 HTML 웹앱 (GitHub Pages / Google Sites 임베드용):** [`index.html`](./index.html)
-- **구글 사이트 게시 페이지:** [https://sites.google.com/view/jeju202611](https://sites.google.com/view/jeju2026112)
+- **구글 사이트 게시 페이지:** [https://sites.google.com/view/jeju2026112](https://sites.google.com/view/jeju2026112)
 
 ## 📂 1. 옵시디언(Obsidian) 일자별 상세 노트 (`여행/제주 가족여행 2026-11/`)
 1. [`00 제주 가족여행 개요.md`](./여행/제주%20가족여행%202026-11/00%20제주%20가족여행%20개요.md) — 전체 여행 요약, 합류 구조, 숙소 거점 및 일자별 동선
